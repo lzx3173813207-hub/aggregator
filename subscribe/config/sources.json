@@ -47,6 +47,36 @@
   ],
   "endgfw": [
    "https://raw.githubusercontent.com/hello-world-1989/cn-news/main/end-gfw-free"
+  ],
+  "ruk1ng": [
+   "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
+  ],
+  "anaer": [
+   "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
+  ],
+  "barabama": [
+   "https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/clashmeta.txt"
+  ],
+  "free18": [
+   "https://raw.githubusercontent.com/free18/v2ray/main/v.txt"
+  ],
+  "tssf": [
+   "https://raw.githubusercontent.com/ts-sf/fly/main/v2"
+  ],
+  "shaoyou": [
+   "https://raw.githubusercontent.com/shaoyouvip/free/main/base64.txt"
+  ],
+  "ripao": [
+   "https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub"
+  ],
+  "go4sharing": [
+   "https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
+  ],
+  "roosterkid": [
+   "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt"
+  ],
+  "anonfetcher": [
+   "https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/main/configs/proxy_configs.txt"
   ]
  },
  "blogs": [
