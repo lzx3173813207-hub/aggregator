@@ -1,41 +1,28 @@
 name: Process
 on:
   schedule:
-    - cron: "05 03 * * *"
-    - cron: "05 11 * * *"
+    # every 6 hours (UTC 00:15, 06:15, 12:15, 18:15)
+    - cron: "15 */6 * * *"
   workflow_dispatch:
 
+concurrency:
+  group: process-${{ github.repository }}
+  cancel-in-progress: false
+
 env:
-  # time zone
   TZ: Asia/Shanghai
-
-  # network proxy aggregate config
-  SUBSCRIBE_CONF: ${{ secrets.SUBSCRIBE_CONF }}
-
-  # token
   PUSH_TOKEN: ${{ secrets.PUSH_TOKEN }}
-
-  # not check connective
-  SKIP_ALIVE_CHECK: ${{ vars.SKIP_ALIVE_CHECK }}
-
-  # skip remark
-  SKIP_REMARK: ${{ vars.SKIP_REMARK }}
-
-  # workflow mode
-  WORKFLOW_MODE: ${{ vars.WORKFLOW_MODE }}
-
-  # include spwcial protocols, such vless hysteria2 and hysteria
-  ENABLE_SPECIAL_PROTOCOLS: ${{ vars.ENABLE_SPECIAL_PROTOCOLS }}
+  GIST_ID: ${{ secrets.GIST_ID }}
+  ENABLE_SPECIAL_PROTOCOLS: "true"
 
 jobs:
   process:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: main
 
       - name: Prepare
         uses: actions/setup-python@v5
@@ -47,8 +34,17 @@ jobs:
       - name: Install
         run: pip3 install -r requirements.txt
 
+      - name: Check
+        run: |
+          if [ -z "$PUSH_TOKEN" ] || [ -z "$GIST_ID" ]; then
+            echo "Error: secrets PUSH_TOKEN and GIST_ID are required"
+            exit 1
+          fi
+          sed "s/__GIST_ID__/${GIST_ID}/g" subscribe/config/free.json > /tmp/free.json
+
+      # if no node passes the check, nothing is pushed and the gist keeps the last result
       - name: Process
-        run: python -u subscribe/process.py --overwrite
+        run: python -u subscribe/process.py -s /tmp/free.json --overwrite -n 64
 
       - name: Timestamp
         run: date
