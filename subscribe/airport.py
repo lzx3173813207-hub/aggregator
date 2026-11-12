@@ -797,9 +797,11 @@ class AirPort:
                 not is_b64encode
                 and not is_json
                 and not is_yaml
-                and all(AirPort.check_protocol(x) for x in text.split("\n") if x and not x.startswith("#"))
+                and any(AirPort.check_protocol(x) for x in text.split("\n") if x and not x.startswith("#"))
             ):
-                text = base64.b64encode(text.encode(encoding="UTF8")).decode(encoding="UTF8")
+                # keep only lines with supported protocols, then base64 encode (patched: tolerate mixed lists)
+                lines = [x.strip() for x in text.split("\n") if x and not x.startswith("#") and AirPort.check_protocol(x.strip())]
+                text = base64.b64encode("\n".join(lines).encode(encoding="UTF8")).decode(encoding="UTF8")
 
             try:
                 with open(v2ray_file, "w+", encoding="UTF8") as f:
