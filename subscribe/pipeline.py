@@ -213,9 +213,9 @@ def check_alive_proxies(
     availables = [p for p in availables if str(p.get("type", "")).lower() not in ("http", "socks5", "socks")]
     # patched: keep every alive Asian node, then the fastest others, up to MAX_NODES in total
     try:
-        cap = int(os.getenv("MAX_NODES", "500") or 0)
+        cap = int(os.getenv("MAX_NODES", "0") or 0)
     except ValueError:
-        cap = 500
+        cap = 0
     if cap > 0 and len(availables) > cap:
         asia = re.compile(
             r"香港|台湾|台灣|日本|新加坡|狮城|韩国|韓國|东京|大阪|首尔|🇭🇰|🇹🇼|🇯🇵|🇸🇬|🇰🇷|Hong ?Kong|Taiwan|Japan|Tokyo|Osaka|Singapore|Korea|Seoul|(?<![A-Za-z])(HK|TW|JP|SG|KR)(?![A-Za-z])",
