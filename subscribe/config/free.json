@@ -1,0 +1,129 @@
+{
+  "sites": [
+    {
+      "name": "pawdroid",
+      "subscribe": [
+        "https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub"
+      ],
+      "domain": "",
+      "enable": true,
+      "push_to": [
+        "free"
+      ],
+      "check_alive": true,
+      "ignore_default_exclude": false
+    },
+    {
+      "name": "ermaozi",
+      "subscribe": [
+        "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt"
+      ],
+      "domain": "",
+      "enable": true,
+      "push_to": [
+        "free"
+      ],
+      "check_alive": true,
+      "ignore_default_exclude": false
+    },
+    {
+      "name": "barryfar",
+      "subscribe": [
+        "https://raw.githubusercontent.com/barry-far/V2ray-Config/main/Sub1.txt"
+      ],
+      "domain": "",
+      "enable": true,
+      "push_to": [
+        "free"
+      ],
+      "check_alive": true,
+      "ignore_default_exclude": false
+    },
+    {
+      "name": "matin",
+      "subscribe": [
+        "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/super-sub.txt"
+      ],
+      "domain": "",
+      "enable": true,
+      "push_to": [
+        "free"
+      ],
+      "check_alive": true,
+      "ignore_default_exclude": false
+    },
+    {
+      "name": "nomorewalls",
+      "subscribe": [
+        "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list_raw.txt"
+      ],
+      "domain": "",
+      "enable": true,
+      "push_to": [
+        "free"
+      ],
+      "check_alive": true,
+      "ignore_default_exclude": false
+    },
+    {
+      "name": "automerge",
+      "subscribe": [
+        "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list_raw.txt"
+      ],
+      "domain": "",
+      "enable": true,
+      "push_to": [
+        "free"
+      ],
+      "check_alive": true,
+      "ignore_default_exclude": false
+    },
+    {
+      "name": "freefq",
+      "subscribe": [
+        "https://raw.githubusercontent.com/freefq/free/master/v2"
+      ],
+      "domain": "",
+      "enable": true,
+      "push_to": [
+        "free"
+      ],
+      "check_alive": true,
+      "ignore_default_exclude": false
+    }
+  ],
+  "crawl": {
+    "enable": false
+  },
+  "groups": {
+    "free": {
+      "emoji": true,
+      "list_only": false,
+      "targets": {
+        "clash": "free-clash",
+        "singbox": "free-singbox",
+        "mixed": "free-v2ray"
+      }
+    }
+  },
+  "storage": {
+    "engine": "gist",
+    "items": {
+      "free-clash": {
+        "username": "lzx3173813207-hub",
+        "gist_id": "__GIST_ID__",
+        "filename": "clash.yaml"
+      },
+      "free-singbox": {
+        "username": "lzx3173813207-hub",
+        "gist_id": "__GIST_ID__",
+        "filename": "singbox.json"
+      },
+      "free-v2ray": {
+        "username": "lzx3173813207-hub",
+        "gist_id": "__GIST_ID__",
+        "filename": "v2ray.txt"
+      }
+    }
+  }
+}
