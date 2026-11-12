@@ -124,6 +124,9 @@ def filter_proxies(proxies: list[dict[str, object]]) -> dict[str, object]:
     return config
 
 
+DELAYS: dict = {}
+
+
 def check(
     proxy: dict[str, object], api_url: str, timeout: int, test_url: str, delay: int, strict: bool = False
 ) -> bool:
@@ -164,6 +167,8 @@ def check(
             if data.get("delay", -1) <= 0 or data.get("delay", -1) > delay:
                 alive = False
                 break
+            # patched: remember the slowest measured delay for ranking
+            DELAYS[proxy.get("name", "")] = max(DELAYS.get(proxy.get("name", ""), 0), data.get("delay", 0))
 
         return alive
     except Exception as e:

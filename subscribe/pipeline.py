@@ -209,6 +209,22 @@ def check_alive_proxies(
         logger.error(f"terminate clash process error, group: {group}")
 
     availables = [checks[i] for i in range(len(checks)) if masks[i]]
+    # patched: keep every alive Asian node, then the fastest others, up to MAX_NODES in total
+    try:
+        cap = int(os.getenv("MAX_NODES", "300") or 0)
+    except ValueError:
+        cap = 300
+    if cap > 0 and len(availables) > cap:
+        asia = re.compile(
+            r"香港|台湾|台灣|日本|新加坡|狮城|韩国|韓國|东京|大阪|首尔|🇭🇰|🇹🇼|🇯🇵|🇸🇬|🇰🇷|Hong ?Kong|Taiwan|Japan|Tokyo|Osaka|Singapore|Korea|Seoul|(?<![A-Za-z])(HK|TW|JP|SG|KR)(?![A-Za-z])",
+            re.I,
+        )
+        speed = lambda p: clash.DELAYS.get(p.get("name", ""), 99999)
+        first = sorted([p for p in availables if asia.search(str(p.get("name", "")))], key=speed)[:cap]
+        rest = sorted([p for p in availables if not asia.search(str(p.get("name", "")))], key=speed)
+        kept = first + rest[: max(0, cap - len(first))]
+        logger.info(f"trim alive proxies to {len(kept)} (asia: {len(first)}) from {len(availables)}")
+        availables = kept
     nochecks.extend(availables)
     logger.info(
         f"proxies check finished, total: {len(checks)}, alive: {len(availables)}, dead: {len(checks) - len(availables)}"
