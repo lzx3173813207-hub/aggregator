@@ -209,11 +209,13 @@ def check_alive_proxies(
         logger.error(f"terminate clash process error, group: {group}")
 
     availables = [checks[i] for i in range(len(checks)) if masks[i]]
+    # patched: plain http/socks proxies are not VPN nodes, drop them
+    availables = [p for p in availables if str(p.get("type", "")).lower() not in ("http", "socks5", "socks")]
     # patched: keep every alive Asian node, then the fastest others, up to MAX_NODES in total
     try:
-        cap = int(os.getenv("MAX_NODES", "300") or 0)
+        cap = int(os.getenv("MAX_NODES", "500") or 0)
     except ValueError:
-        cap = 300
+        cap = 500
     if cap > 0 and len(availables) > cap:
         asia = re.compile(
             r"香港|台湾|台灣|日本|新加坡|狮城|韩国|韓國|东京|大阪|首尔|🇭🇰|🇹🇼|🇯🇵|🇸🇬|🇰🇷|Hong ?Kong|Taiwan|Japan|Tokyo|Osaka|Singapore|Korea|Seoul|(?<![A-Za-z])(HK|TW|JP|SG|KR)(?![A-Za-z])",
