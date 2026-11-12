@@ -1,0 +1,126 @@
+{
+ "static": {
+  "shadowmere": [
+   "https://shadowmere.xyz/api/b64sub/"
+  ],
+  "zmxoo": [
+   "https://tian.zmxoo.xyz/subapi"
+  ],
+  "sunmiao": [
+   "https://sunmiao4458.github.io/free-proxy-airport/clash.yaml"
+  ]
+ },
+ "github": {
+  "pawdroid": [
+   "https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub"
+  ],
+  "ermaozi": [
+   "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt"
+  ],
+  "barryfar": [
+   "https://raw.githubusercontent.com/barry-far/V2ray-Config/main/Sub1.txt"
+  ],
+  "matin": [
+   "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/super-sub.txt"
+  ],
+  "nomorewalls": [
+   "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list_raw.txt"
+  ],
+  "automerge": [
+   "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list_raw.txt"
+  ],
+  "freefq": [
+   "https://raw.githubusercontent.com/freefq/free/master/v2"
+  ],
+  "au1rxx": [
+   "https://raw.githubusercontent.com/Au1rxx/free-vpn-subscriptions/main/output/v2ray-base64.txt"
+  ],
+  "kooker": [
+   "https://raw.githubusercontent.com/kooker/FreeSubsCheck/main/base64.txt"
+  ],
+  "vify": [
+   "https://raw.githubusercontent.com/Mr-Meshky/vify/main/configs/alive.txt"
+  ],
+  "antirkn": [
+   "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/1.1.txt",
+   "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/1.2.txt"
+  ],
+  "endgfw": [
+   "https://raw.githubusercontent.com/hello-world-1989/cn-news/main/end-gfw-free"
+  ]
+ },
+ "blogs": [
+  {
+   "name": "shareclash",
+   "list": "https://shareclash.com/",
+   "article": "/freenode/\\d{4}-\\d\\d-\\d\\d/?$",
+   "sort": "date_desc"
+  },
+  {
+   "name": "freeclashnode",
+   "list": "https://www.freeclashnode.com/free-node/",
+   "article": "/free-node/.*20\\d\\d-\\d{1,2}-\\d{1,2}.*\\.htm$",
+   "sort": "date_desc"
+  },
+  {
+   "name": "flclash",
+   "list": "https://flclash.top/free-node/",
+   "article": "/free-node/.*20\\d\\d-\\d{1,2}-\\d{1,2}.*\\.htm$",
+   "sort": "date_desc"
+  },
+  {
+   "name": "hiddifynext",
+   "list": "https://hiddifynext.cc/free-node/",
+   "article": "/free-node/.*20\\d\\d-\\d{1,2}-\\d{1,2}.*\\.htm$",
+   "sort": "date_desc"
+  },
+  {
+   "name": "hysteria2org",
+   "list": "https://hysteria2.org/free-node/",
+   "article": "/free-node/.*20\\d\\d-\\d{1,2}-\\d{1,2}.*\\.htm$",
+   "sort": "date_desc"
+  },
+  {
+   "name": "clashgithub",
+   "list": "https://clashgithub.com/",
+   "article": "/clashnode-\\d{8}\\.html$",
+   "sort": "date_desc"
+  },
+  {
+   "name": "kuaiyu",
+   "list": "https://blog.kuaiyu.cc/",
+   "article": "/posts/free-nodes\\d+/?$",
+   "sort": "number_desc"
+  },
+  {
+   "name": "xinshoucun",
+   "list": "https://xinshoucun.net/category/freenode",
+   "article": "xinshoucun\\.net/\\d+/?$",
+   "sort": "number_desc"
+  },
+  {
+   "name": "mibei77",
+   "list": "https://www.mibei77.com/category/jiedian",
+   "article": "mibei77\\.com/\\d+\\.html$",
+   "sort": "number_desc"
+  },
+  {
+   "name": "v2rayshare",
+   "list": "https://v2rayshare.net/f/freenode",
+   "article": "/p/\\d+\\.html$",
+   "sort": "number_desc"
+  },
+  {
+   "name": "yoyapai",
+   "list": "https://yoyapai.com/category/mianfeijiedian",
+   "article": "yoyapai\\.com/\\d+/?$",
+   "sort": "number_desc"
+  },
+  {
+   "name": "telefly",
+   "list": "https://free.telefly.cc/",
+   "article": "/share/\\d{6}/\\w+$",
+   "sort": "date_desc"
+  }
+ ]
+}
