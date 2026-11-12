@@ -40,7 +40,13 @@ jobs:
             echo "Error: secrets PUSH_TOKEN and GIST_ID are required"
             exit 1
           fi
-          sed "s/__GIST_ID__/${GIST_ID}/g" subscribe/config/free.json > /tmp/free.json
+          sed "s/__GIST_ID__/${GIST_ID}/g" subscribe/config/free.json > /tmp/base.json
+
+      # pick fresh sources only: newest daily posts (<= 2 days old) and recently updated GitHub lists
+      - name: Resolve sources
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -u subscribe/resolve_sources.py subscribe/config/sources.json /tmp/base.json /tmp/free.json
 
       # if no node passes the check, nothing is pushed and the gist keeps the last result
       - name: Process
