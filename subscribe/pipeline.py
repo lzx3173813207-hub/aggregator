@@ -2,6 +2,7 @@
 
 import os
 import random
+import re
 import subprocess
 import time
 
@@ -170,6 +171,30 @@ def check_alive_proxies(
 
     binpath = os.path.join(workspace, clash_bin)
     utils.chmod(binpath)
+
+    checks = clash.generate_config(workspace, checks, filename)
+    # patched: drop proxies that make clash refuse the whole config (one bad node would kill the run)
+    for _ in range(200):
+        try:
+            test = subprocess.run(
+                [binpath, "-t", "-d", workspace, "-f", os.path.join(workspace, filename)],
+                capture_output=True, text=True, timeout=120,
+            )
+        except Exception as e:
+            logger.error(f"clash config test error: {e}")
+            break
+        output = (test.stdout or "") + (test.stderr or "")
+        if test.returncode == 0 or "test is successful" in output:
+            break
+        bad = re.search(r"proxy (\d+):", output)
+        if not bad or int(bad.group(1)) >= len(checks):
+            logger.error(f"clash config test failed and cannot locate bad proxy: {output[-300:]}")
+            break
+        index = int(bad.group(1))
+        logger.warning(f"drop invalid proxy #{index}: {output.strip().splitlines()[-1][:200]}")
+        checks.pop(index)
+        checks = clash.generate_config(workspace, checks, filename)
+
     logger.info(f"startup clash now, workspace: {workspace}, config: {filename}")
     process = subprocess.Popen([binpath, "-d", workspace, "-f", os.path.join(workspace, filename)])
     logger.info(f"clash start success, begin check proxies, group: {group}\tcount: {len(checks)}")
