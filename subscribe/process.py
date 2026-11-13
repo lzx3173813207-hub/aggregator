@@ -27,6 +27,7 @@ from workflow import TaskConfig
 
 import clash
 import subconverter
+import v2ray_links
 
 PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
@@ -298,6 +299,14 @@ def aggregate(args: argparse.Namespace) -> None:
                     content = f.read()
 
                 mixed = target == "v2ray" or target == "mixed" or "ss" in target
+                if target == "v2ray" or target == "mixed":
+                    # patched: build v2rayN/v2rayNG links ourselves (keeps grpc/xhttp fields,
+                    # drops nodes Xray cannot use: insecure TLS, old ss ciphers, ssr, anytls ...)
+                    content, v2stats = v2ray_links.build(nochecks)
+                    logger.info(f"v2ray links built, group: {k}, stats: {v2stats}")
+                    if not content:
+                        logger.error(f"no v2rayNG-compatible node, skip push, group: {k}")
+                        continue
                 if mixed and not utils.isb64encode(content=content):
                     # base64 encode
                     try:
